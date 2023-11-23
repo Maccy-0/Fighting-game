@@ -1,17 +1,19 @@
 //Fighting Game (Title in progress)
 //To do
-//Make game states. Start, end...
 //Draw background and UI
-//Make the tiles 
 //Push the file
 //Make the croud (All of it)
 //Done
 
 String gameState="start";
-
+int time;
+int people;
+//testing
+float player2Health;
+float player1Health;
 
 //Ground class. All 60 boxes.
-crowd[] crowd = new crowd[60];
+crowd[] crowd = new crowd[12];
 
 void setup(){
   //Basic setup.
@@ -20,40 +22,74 @@ void setup(){
   background(0,153,255);
   strokeWeight(2);
   //Starting values.
-  
   //remove later
-  gameState="main";
+  gameState="start";
+  people=0;
+  player1Health=71;
+  player2Health=24;
   
+  while (people<12) {
+      crowd[people]= new crowd(people);
+      people+=1;
+    }
 }
 
 void draw(){
   //The 3 states of the game
   if (gameState=="start"){
-    start();
+    Start();
   }
   if (gameState=="main"){
     //This is for the main gameplay
     main();
-    for (int i=0; i<60; i++) {
-      crowd[i]= new crowd(i);
-    }
   }
   if (gameState=="end"){
     end();
   }
   
+  println(gameState);
+}
+
+
+void mouseClicked(){
+  if (gameState=="start"){
+    gameState="main";
+    time=99;
+  }
   
 }
 
-void start(){
+
+void Start(){//Capatal because 'start' messes up everything.
+  drawBackground();
   
-  
-  
+  fill(96,96,96,200);
+  rect(0,0,1280,1024);
+  textSize(200);
+  fill(0,255,0);
+  text("Fighters",300, 400);
+  textSize(100);
+  fill(255,255,255);
+  text("Click to Start",350, 800);
 }
+
+
 
 void main(){
   //println("Works");
+  time=99-(millis()/1000);
   drawBackground();
+  for (int i=0; i<crowd.length; i++) {
+    crowd[i].drawCrowd();
+  }
+  drawUI();
+  
+  if ((player1Health<=0) || (player2Health<=0) || (time<=0)){
+    gameState="end";
+    
+    
+  }
+  
   
 }
 
@@ -66,9 +102,34 @@ void end(){
 
 
 void drawBackground(){
+  fill(0,153,255);
+  rect(0,0,1280,1024);
   fill (160, 160, 160);
-  rect(0,824,1280,1024);
+  rect(0,824,1280,200);
   tiles(); //This will be redone when I add the interaciblty. This is just to see how it looks.
+  
+  //clouds
+  stroke(255,255,255);
+  fill(255,255,255);
+  ellipse(300,200,100,100);
+  ellipse(250,140,100,100);
+  ellipse(280,120,100,100);
+  ellipse(210,90,100,100);
+  ellipse(230,60,100,100);
+  ellipse(170,50,100,100);
+  ellipse(130,30,100,100);
+  rect(0,0,150,200);
+  rect(100,75,140,125);
+  
+  stroke(0,0,0);
+  
+  
+  //Bench back
+  fill(102,51,0);
+  rect(0,190,1280,460);
+  
+  rect(0,650,80,174);
+  rect(1200,650,80,174);
   
 }
 
@@ -82,4 +143,36 @@ void tiles(){
     
   }
   
+}
+
+
+void drawUI(){
+  //Player 1
+  fill(160,160,160);
+  rect(75,75,400,80);
+  fill(255,0,0);
+  rect(75,75,player1Health*4,80);
+  textSize(40);
+  text("Player 1", 75, 70);
+  
+  //Player 2
+  fill(160,160,160);
+  rect(1205,75,-400,80);
+  fill(255,0,0);
+  rect(1205,75,-player2Health*4,80);
+  text("Player 2", 1070, 70);
+  
+  //timer
+  fill(255,255,255);
+  rect (560, 65, 160, 100, 100);
+  fill(0,0,0);
+  textSize(60);
+  text(int(time), 610, 135);
+  
+  //Bench front
+  fill(102,51,0);
+  rect(0,330,1280,80);
+  
+  fill(102,51,0);
+  rect(0,580,1280,80);
 }
