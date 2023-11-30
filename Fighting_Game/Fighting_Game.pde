@@ -1,9 +1,5 @@
 //Fighting Game (Title in progress)
 //To do
-//Draw background and UI
-//Push the file
-//Make the croud (All of it)
-//Done
 
 String gameState="start";
 int time;
@@ -11,9 +7,15 @@ int people;
 //testing
 float player2Health;
 float player1Health;
+int i;
+String playerMode1;
+String playerMode2;
 
-//Ground class. All 60 boxes.
+//Crowd class.
 crowd[] crowd = new crowd[12];
+
+//Player class
+player[] player = new player[2];
 
 void setup(){
   //Basic setup.
@@ -31,7 +33,13 @@ void setup(){
   while (people<12) {
       crowd[people]= new crowd(people);
       people+=1;
-    }
+  }
+  
+  i=0;
+  while (i<2) {
+      player[i]= new player(i);
+      i+=1;
+  }
 }
 
 void draw(){
@@ -47,7 +55,7 @@ void draw(){
     end();
   }
   
-  println(gameState);
+  //println(gameState);
 }
 
 
@@ -60,7 +68,35 @@ void mouseClicked(){
 }
 
 
-void Start(){//Capatal because 'start' messes up everything.
+
+
+
+void keyPressed() {
+  if (key=='a'){
+    playerMode1="moveLeft";
+  }
+  if (key=='d'){
+    playerMode1="moveRight";
+  }
+  if (key=='w'){
+    playerMode1="jump";
+    player[1].updateMode("jump");
+  }
+  if (key=='z'){
+    playerMode1="upAttack";
+  }
+  if (key=='x'){
+    playerMode1="midAttack";
+  }
+  if (key=='c'){
+    playerMode1="downAttack";
+  }
+}
+
+
+
+
+void Start(){//Capatal because 'start' messes up everything. :(
   drawBackground();
   
   fill(96,96,96,200);
@@ -83,7 +119,9 @@ void main(){
     crowd[i].drawCrowd();
   }
   drawUI();
-  
+  for (int i=0; i<player.length; i++) {
+    player[i].drawPlayer();
+  }
   if ((player1Health<=0) || (player2Health<=0) || (time<=0)){
     gameState="end";
     
