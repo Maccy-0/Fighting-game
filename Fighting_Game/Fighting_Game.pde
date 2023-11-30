@@ -90,6 +90,25 @@ void keyPressed() {
   if (key=='c'){
     player[1].updateMode('c');
   }
+  
+  if (key=='j'){
+    player[1].updateMode('a');
+  }
+  if (key=='l'){
+    player[1].updateMode('d');
+  }
+  if (key=='i'){
+    player[1].updateMode('w');
+  }
+  if (key=='m'){
+    player[1].updateMode('z');
+  }
+  if (key==','){
+    player[1].updateMode('x');
+  }
+  if (key=='.'){
+    player[1].updateMode('c');
+  }
 }
 
 
