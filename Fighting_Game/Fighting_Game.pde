@@ -8,8 +8,8 @@ int people;
 float player2Health;
 float player1Health;
 int i;
-String playerMode1;
-String playerMode2;
+char playerMode1;
+char playerMode2;
 
 //Crowd class.
 crowd[] crowd = new crowd[12];
@@ -73,23 +73,22 @@ void mouseClicked(){
 
 void keyPressed() {
   if (key=='a'){
-    playerMode1="moveLeft";
+    player[1].updateMode('a');
   }
   if (key=='d'){
-    playerMode1="moveRight";
+    player[1].updateMode('d');
   }
   if (key=='w'){
-    playerMode1="jump";
-    player[1].updateMode("jump");
+    player[1].updateMode('w');
   }
   if (key=='z'){
-    playerMode1="upAttack";
+    player[1].updateMode('z');
   }
   if (key=='x'){
-    playerMode1="midAttack";
+    player[1].updateMode('x');
   }
   if (key=='c'){
-    playerMode1="downAttack";
+    player[1].updateMode('c');
   }
 }
 
