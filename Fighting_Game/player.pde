@@ -13,11 +13,12 @@ class player{
   boolean hurt;
   int hurtCounter;
   int direction;
+  int health;
   
   player(int i){
-    hurt=false;
     hurtCounter=0;
     playerY=700;
+    health=100;
     if (i==1){
       playerX=300;
       playerNumber=1;
@@ -59,7 +60,7 @@ class player{
         if (dist(player[0].playerX,player[0].playerY,playerX+175*direction,playerY-130)<80 && !hurt){
           print("Player 2 hurt");
           hurt=true;
-          hurtCounter=50;
+          hurtCounter=30;
         }
         //println(player[1].playerX);
         break; 
@@ -69,7 +70,7 @@ class player{
         if (dist(player[0].playerX,player[0].playerY,playerX+175*direction,playerY)<80 && !hurt){
           print("Player 2 hurt");
           hurt=true;
-          hurtCounter=50;
+          hurtCounter=30;
         }
         break; 
       case 'c': //downAttack
@@ -78,7 +79,8 @@ class player{
         if (dist(player[0].playerX,player[0].playerY,playerX+175*direction,playerY+130)<80 && !hurt){
           print("Player 2 hurt");
           hurt=true;
-          hurtCounter=50;
+          hurtCounter=30;
+          
         }
         break; 
       default://idle

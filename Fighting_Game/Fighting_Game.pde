@@ -1,5 +1,9 @@
 //Fighting Game (Title in progress)
 //To do
+//Second player
+//Broken tiles
+//water leck
+//Add the 10 skills
 
 String gameState="start";
 int time;
@@ -10,6 +14,7 @@ float player1Health;
 int i;
 char playerMode1;
 char playerMode2;
+float startingTime;
 
 //Crowd class.
 crowd[] crowd = new crowd[12];
@@ -27,19 +32,12 @@ void setup(){
   //remove later
   gameState="start";
   people=0;
-  player1Health=71;
-  player2Health=24;
   
   while (people<12) {
       crowd[people]= new crowd(people);
       people+=1;
   }
-  
   i=0;
-  while (i<2) {
-      player[i]= new player(i);
-      i+=1;
-  }
 }
 
 void draw(){
@@ -52,6 +50,7 @@ void draw(){
     main();
   }
   if (gameState=="end"){
+    player2Health=0;
     end();
   }
   
@@ -62,7 +61,25 @@ void draw(){
 void mouseClicked(){
   if (gameState=="start"){
     gameState="main";
-    time=99;
+    player1Health=100;
+    player2Health=100;
+    startingTime=99+(millis()/1000);
+    i=0;
+    while (i<2) {
+      player[i]= new player(i);
+      i+=1;
+    }
+  }
+  if (gameState=="end"){
+    gameState="main";
+    player1Health=100;
+    player2Health=100;
+    startingTime=99+(millis()/1000);
+    i=0;
+    while (i<2) {
+      player[i]= new player(i);
+      i+=1;
+    }
   }
   
 }
@@ -131,7 +148,7 @@ void Start(){//Capatal because 'start' messes up everything. :(
 
 void main(){
   //println("Works");
-  time=99-(millis()/1000);
+  time=int(startingTime)-(millis()/1000);
   drawBackground();
   for (int i=0; i<crowd.length; i++) {
     crowd[i].drawCrowd();
@@ -140,6 +157,13 @@ void main(){
   for (int i=0; i<player.length; i++) {
     player[i].drawPlayer();
   }
+  if (player[0].hurtCounter==25){
+    player1Health-=11;
+  }
+  if (player[1].hurtCounter==25){
+    player2Health-=11;
+  }
+  
   if ((player1Health<=0) || (player2Health<=0) || (time<=0)){
     gameState="end";
     
@@ -150,8 +174,33 @@ void main(){
 }
 
 void end(){
+  drawBackground();
   
-  
+  fill(96,96,96,200);
+  rect(0,0,1280,1024);
+  textSize(200);
+  fill(0,255,0);
+  text("Fighters",300, 400);
+  textSize(100);
+  fill(255,255,255);
+  if (time<=0){
+    fill(255,255,255);
+    text("Tie",550, 700);
+    fill(0,0,255);
+    text("Click to play again",250, 850);
+  }
+  else if (player1Health<=0){
+    fill(255,255,255);
+    text("Player 1 wins",350, 700);
+    fill(0,0,255);
+    text("Click to play again",250, 850);
+  }
+  else if (player2Health<=0){
+    fill(255,255,255);
+    text("Player 2 wins",350, 700);
+    fill(0,0,255);
+    text("Click to play again",250, 850);
+  }
   
 }
 
@@ -187,6 +236,16 @@ void drawBackground(){
   rect(0,650,80,174);
   rect(1200,650,80,174);
   
+}
+
+void health(int team){
+  if (team==1){
+    player2Health-=5;
+    
+  }
+  if(team==2){
+    player2Health-=5;
+  }
 }
 
 
