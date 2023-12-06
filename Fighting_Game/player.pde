@@ -15,20 +15,18 @@ class player{
   int direction;
   
   player(int i){
+    hurt=false;
+    hurtCounter=0;
+    playerY=700;
     if (i==1){
       playerX=300;
-      playerY=700;
       playerNumber=1;
-      hurt=false;
-      hurtCounter=0;
       direction=1;
     }
     if (i==0){
       playerX=980;
-      playerY=700;
       playerNumber=2;
-      hurt=false;
-      hurtCounter=0;
+      direction=2;
     }
   }
   
