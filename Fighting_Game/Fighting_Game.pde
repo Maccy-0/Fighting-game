@@ -1,9 +1,9 @@
 //Fighting Game (Title in progress)
-//To do
-//Second player
-//Broken tiles
-//water leck
-//Add the 10 skills
+//To do (end with 3)
+
+//random 2D vector
+//remove()
+//the direction and distance between two point
 
 String gameState="start";
 int time;
@@ -15,6 +15,8 @@ int i;
 char playerMode1;
 char playerMode2;
 float startingTime;
+ArrayList tiles;
+float x;
 
 //Crowd class.
 crowd[] crowd = new crowd[12];
@@ -96,7 +98,13 @@ void keyPressed() {
     player[1].updateMode('d');
   }
   if (key=='w'){
-    player[1].updateMode('w');
+    //player[1].updateMode('w');
+    if (player[1].velocity.y==0.0) {
+      player[1].velocity.y -= 1.25;
+    }
+    else{
+      
+    }
   }
   if (key=='z'){
     player[1].updateMode('z');
@@ -240,11 +248,11 @@ void drawBackground(){
 
 void health(int team){
   if (team==1){
-    player2Health-=5;
+    player2Health-=damage();
     
   }
   if(team==2){
-    player2Health-=5;
+    player2Health-=damage();
   }
 }
 
@@ -290,4 +298,11 @@ void drawUI(){
   
   fill(102,51,0);
   rect(0,580,1280,80);
+}
+
+float damage(){
+  
+  x=int(player[1].velocity.y+5);
+  return x;
+  
 }

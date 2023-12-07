@@ -19,6 +19,9 @@ class player{
     hurtCounter=0;
     playerY=700;
     health=100;
+    location = new PVector(0,0);
+    velocity = new PVector(0,0);
+    gravity = new PVector(0,0.1);
     if (i==1){
       playerX=300;
       playerNumber=1;
@@ -34,6 +37,24 @@ class player{
   void drawPlayer(){
     rectMode(CENTER);
     fill(255);
+    location.add(velocity);
+    println(location.y);
+    playerY+=location.y;
+    println(playerY);
+    if (playerY <= 700) {
+      velocity.add(gravity);
+      playerY+=location.y;
+    }
+    else{
+      playerY=700;
+      velocity.y=0;
+      location.y=0;
+    }
+    if (velocity.y>0){
+    //????
+    //velocity.muti(1.01, velocity);
+      
+    }
     //println(playerMode1);
     hurtCounter-=1;
     if (hurtCounter<0){
@@ -52,7 +73,10 @@ class player{
         direction=1;
         break; 
       case 'w': //jump
-        println("Jump! :D"); 
+        //println("Jump! :D"); 
+        //if (playerY >= 700) {
+        //  velocity.y -= 1;
+        //}
         break; 
       case 'z': //upAttack
         rect(playerX+90*direction,playerY-130,200,40); 
