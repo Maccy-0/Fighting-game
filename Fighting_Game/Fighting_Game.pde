@@ -1,10 +1,7 @@
 //Fighting Game (Title in progress)
 //To do
 //Things in the picture:
-//Add controls to the start screen
-//Add second chariter (30)
-//Add tiles that can die (17) (34) (36)
-//Add leak (41)
+//Add second chariter
 //Other:
 //Add comments
 //Add the text file for questions
@@ -20,14 +17,18 @@ int i;
 char playerMode1;
 char playerMode2;
 float startingTime;
-ArrayList tiles;
 float x;
+ArrayList<water> water;
+PVector v;
 
 //Crowd class.
 crowd[] crowd = new crowd[12];
 
 //Player class
 player[] player = new player[2];
+
+//water class
+//water[] water = new water[0];
 
 void setup(){
   //Basic setup.
@@ -39,7 +40,7 @@ void setup(){
   //remove later
   gameState="start";
   people=0;
-  
+  water = new ArrayList();
   while (people<12) {
       crowd[people]= new crowd(people);
       people+=1;
@@ -78,15 +79,7 @@ void mouseClicked(){
     }
   }
   if (gameState=="end"){
-    gameState="main";
-    player1Health=100;
-    player2Health=100;
-    startingTime=99+(millis()/1000);
-    i=0;
-    while (i<2) {
-      player[i]= new player(i);
-      i+=1;
-    }
+    gameState="start";
   }
   
 }
@@ -96,6 +89,7 @@ void mouseClicked(){
 
 
 void keyPressed() {
+  if (gameState=="main"){
   if (key=='a'){
     player[1].updateMode('a');
   }
@@ -139,6 +133,7 @@ void keyPressed() {
   if (key=='.'){
     player[1].updateMode('c');
   }
+  }
 }
 
 
@@ -151,10 +146,19 @@ void Start(){//Capatal because 'start' messes up everything. :(
   rect(0,0,1280,1024);
   textSize(200);
   fill(0,255,0);
-  text("Fighters",300, 400);
-  textSize(100);
+  text("Fighters",300, 200);
+  
+  textSize(75);
   fill(255,255,255);
-  text("Click to Start",350, 800);
+  text("Player 1",150, 350);
+  text("Player 2",850, 350);
+  textSize(50);
+  text("a to move left\nd to move right\nw to jump\nz for high attack\nx for middle attack\nc for low attack",125, 450);
+  text("j to move left\nl to move right\ni to jump\nm for high attack\n, for middle attack\n. for low attack",825, 450);
+  
+  textSize(100);
+  fill(255,255,0);
+  text("Click to Start",350, 925);
 }
 
 
@@ -182,8 +186,17 @@ void main(){
     
     
   }
-  
-  
+  if (millis()%5==0){
+      water.add(new water());
+  }  
+  for (int i = water.size()-1; i >= 0; i--) {
+    water Water = water.get(i);
+    
+    float waterHeight=Water.drawWater();
+    if (waterHeight>1050){
+      water.remove(i);
+    }
+  }
 }
 
 void end(){
@@ -303,6 +316,12 @@ void drawUI(){
   
   fill(102,51,0);
   rect(0,580,1280,80);
+  
+  //crack
+  line(870,825,870,845);
+  line(860,850,870,845);
+  line(880,855,870,845);
+  line(880,855,890,850);
 }
 
 float damage(float D){
