@@ -14,6 +14,7 @@ class player{
   int hurtCounter;
   int direction;
   int health;
+  float[] arms = {90, -130, 90, 0, 90, 130};
   
   player(int i){
     hurtCounter=0;
@@ -79,7 +80,8 @@ class player{
         //}
         break; 
       case 'z': //upAttack
-        rect(playerX+90*direction,playerY-130,200,40); 
+      fill(0,166,0);
+        rect(playerX+(arms[0])*direction,playerY+(arms[1]),200,40); 
         println(dist(player[0].playerX,player[0].playerY,playerX+175*direction,playerY-130));
         if (dist(player[0].playerX,player[0].playerY,playerX+175*direction,playerY-130)<80 && !hurt){
           print("Player 2 hurt");
@@ -90,7 +92,8 @@ class player{
         //println(player[1].playerX);
         break; 
       case 'x': //midAttack
-        rect(playerX+90*direction,playerY,200,40);
+      fill(0,166,0);
+        rect(playerX+(arms[2])*direction,playerY+(arms[3]),200,40);
         println(dist(player[0].playerX,player[0].playerY,playerX+175*direction,playerY));
         if (dist(player[0].playerX,player[0].playerY,playerX+175*direction,playerY)<80 && !hurt){
           print("Player 2 hurt");
@@ -100,7 +103,8 @@ class player{
         }
         break; 
       case 'c': //downAttack
-        rect(playerX+90*direction,playerY+130,200,40); 
+      fill(0,166,0);
+        rect(playerX+(arms[4])*direction,playerY+(arms[5]),200,40); 
         println(dist(player[0].playerX,player[0].playerY,playerX+175*direction,playerY+130));
         if (dist(player[0].playerX,player[0].playerY,playerX+175*direction,playerY+130)<80 && !hurt){
           print("Player 2 hurt");
@@ -113,10 +117,21 @@ class player{
         break;
     }
     playerMode1='0';
-    rect(playerX,playerY, 130, 260);
-    ellipse(playerX+175*direction,playerY,40,40);//mid
-    ellipse(playerX+175*direction,playerY-130,40,40);//high
-    ellipse(playerX+175*direction,playerY+130,40,40);//low
+    fill(0,166,0);
+    rect(playerX,playerY+40, 130, 210);
+    ellipse(playerX,playerY-100,130,130);
+    fill(255,255,255);
+    ellipse(playerX-30,playerY-110,30,30);
+    ellipse(playerX+30,playerY-110,30,30);
+    fill(0,0,0);
+    ellipse(playerX+40*direction,playerY-110,10,10);
+    ellipse(playerX-20*direction,playerY-110,10,10);
+    line(playerX,playerY-100,playerX-40,playerY-140);
+    line(playerX,playerY-100,playerX+40,playerY-140);
+    line(playerX-30,playerY-70,playerX+30,playerY-70);
+    //ellipse(playerX+175*direction,playerY,40,40);//mid
+    //ellipse(playerX+175*direction,playerY-130,40,40);//high
+    //ellipse(playerX+175*direction,playerY+130,40,40);//low
     fill(255,0,0);
     }
     if (playerNumber==2){

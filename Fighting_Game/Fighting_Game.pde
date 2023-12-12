@@ -2,8 +2,6 @@
 //To do
 //Things in the picture:
 //Add controls to the start screen
-//Change Crowd looks (24)
-//Change chariter looks (33)
 //Add second chariter (30)
 //Add tiles that can die (17) (34) (36)
 //Add leak (41)
@@ -171,7 +169,6 @@ void main(){
   drawUI();
   for (int i=0; i<player.length; i++) {
     player[i].drawPlayer();
-    println(player);
   }
   if (player[0].hurtCounter==25){
     player1Health-=11;
