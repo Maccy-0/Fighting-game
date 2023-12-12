@@ -1,9 +1,16 @@
 //Fighting Game (Title in progress)
-//To do (end with 3)
-
-//random 2D vector
-//remove()
-//the direction and distance between two point
+//To do
+//Things in the picture:
+//Add controls to the start screen
+//Change Crowd looks (24)
+//Change chariter looks (33)
+//Add second chariter (30)
+//Add tiles that can die (17) (34) (36)
+//Add leak (41)
+//Other:
+//Add comments
+//Add the text file for questions
+//Zip and hand in
 
 String gameState="start";
 int time;
@@ -164,6 +171,7 @@ void main(){
   drawUI();
   for (int i=0; i<player.length; i++) {
     player[i].drawPlayer();
+    println(player);
   }
   if (player[0].hurtCounter==25){
     player1Health-=11;
@@ -248,11 +256,11 @@ void drawBackground(){
 
 void health(int team){
   if (team==1){
-    player2Health-=damage();
+    player2Health-=damage(player[1].velocity.y);
     
   }
   if(team==2){
-    player2Health-=damage();
+    player2Health-=damage(player[1].velocity.y);
   }
 }
 
@@ -300,9 +308,9 @@ void drawUI(){
   rect(0,580,1280,80);
 }
 
-float damage(){
+float damage(float D){
   
-  x=int(player[1].velocity.y+5);
+  x=int(D+5);
   return x;
   
 }

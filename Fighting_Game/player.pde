@@ -26,11 +26,13 @@ class player{
       playerX=300;
       playerNumber=1;
       direction=1;
+      println("Hello1");
     }
     if (i==0){
       playerX=980;
       playerNumber=2;
       direction=2;
+      println("Hello2");
     }
   }
   
@@ -38,9 +40,9 @@ class player{
     rectMode(CENTER);
     fill(255);
     location.add(velocity);
-    println(location.y);
+    //println(location.y);
     playerY+=location.y;
-    println(playerY);
+    //println(playerY);
     if (playerY <= 700) {
       velocity.add(gravity);
       playerY+=location.y;
@@ -51,9 +53,7 @@ class player{
       location.y=0;
     }
     if (velocity.y>0){
-    //????
-    //velocity.muti(1.01, velocity);
-      
+    velocity=velocity.mult(velocity, 1.1);
     }
     //println(playerMode1);
     hurtCounter-=1;
@@ -64,12 +64,12 @@ class player{
     switch(playerMode1) { 
       case 'a': //moveLeft
         println("x");
-        playerX-=10;
+        playerX-=20;
         direction=-1;
         break; 
       case 'd': //moveRight
         println("x");  
-        playerX+=10;
+        playerX+=20;
         direction=1;
         break; 
       case 'w': //jump
@@ -85,6 +85,7 @@ class player{
           print("Player 2 hurt");
           hurt=true;
           hurtCounter=30;
+          player[0].playerX+=((dist(player[0].playerX,player[0].playerY,playerX+175*direction,playerY-130)/80)-1)*-40*direction;
         }
         //println(player[1].playerX);
         break; 
@@ -95,6 +96,7 @@ class player{
           print("Player 2 hurt");
           hurt=true;
           hurtCounter=30;
+          player[0].playerX+=((dist(player[0].playerX,player[0].playerY,playerX+175*direction,playerY)/80)-1)*-40*direction;
         }
         break; 
       case 'c': //downAttack
@@ -104,7 +106,7 @@ class player{
           print("Player 2 hurt");
           hurt=true;
           hurtCounter=30;
-          
+          player[0].playerX+=((dist(player[0].playerX,player[0].playerY,playerX+175*direction,playerY+130)/80)-1)*-40*direction;
         }
         break; 
       default://idle
@@ -118,7 +120,7 @@ class player{
     fill(255,0,0);
     }
     if (playerNumber==2){
-      
+      rect(playerX,playerY, 130, 260);
     }
     
     rectMode(CORNER);
