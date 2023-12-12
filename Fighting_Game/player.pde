@@ -32,7 +32,7 @@ class player{
     if (i==0){
       playerX=980;
       playerNumber=2;
-      direction=2;
+      direction=-1;
       println("Hello2");
     }
   }
@@ -133,9 +133,82 @@ class player{
     //ellipse(playerX+175*direction,playerY-130,40,40);//high
     //ellipse(playerX+175*direction,playerY+130,40,40);//low
     fill(255,0,0);
-    }
+    }//yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy
     if (playerNumber==2){
-      rect(playerX,playerY, 130, 260);
+    switch(playerMode2) { 
+      case 'j': //moveLeft
+        println("x");
+        playerX-=20;
+        direction=-1;
+        break; 
+      case 'l': //moveRight
+        println("x");  
+        playerX+=20;
+        direction=1;
+        break; 
+      case 'i': //jump
+        //println("Jump! :D"); 
+        //if (playerY >= 700) {
+        //  velocity.y -= 1;
+        //}
+        break; 
+      case 'm': //upAttack
+      fill(160,0,0);
+        rect(playerX+(arms[0])*direction,playerY+(arms[1]),200,40); 
+        println(dist(player[1].playerX,player[1].playerY,playerX+175*direction,playerY-130));
+        if (dist(player[1].playerX,player[1].playerY,playerX+175*direction,playerY-130)<80 && !hurt){
+          print("Player 1 hurt");
+          hurt=true;
+          hurtCounter=30;
+          player[1].playerX+=((dist(player[1].playerX,player[1].playerY,playerX+175*direction,playerY-130)/80)-1)*-40*direction;
+        }
+        //println(player[1].playerX);
+        break; 
+      case ',': //midAttack
+      fill(160,0,0);
+        rect(playerX+(arms[2])*direction,playerY+(arms[3]),200,40);
+        println(dist(player[1].playerX,player[1].playerY,playerX+175*direction,playerY));
+        if (dist(player[1].playerX,player[1].playerY,playerX+175*direction,playerY)<80 && !hurt){
+          print("Player 1 hurt");
+          hurt=true;
+          hurtCounter=30;
+          player[1].playerX+=((dist(player[1].playerX,player[1].playerY,playerX+175*direction,playerY)/80)-1)*-40*direction;
+        }
+        break; 
+      case '.': //downAttack
+      fill(160,0,0);
+        rect(playerX+(arms[4])*direction,playerY+(arms[5]),200,40); 
+        println(dist(player[1].playerX,player[1].playerY,playerX+175*direction,playerY+130));
+        if (dist(player[1].playerX,player[1].playerY,playerX+175*direction,playerY+130)<80 && !hurt){
+          print("Player 1 hurt");
+          hurt=true;
+          hurtCounter=30;
+          player[1].playerX+=((dist(player[1].playerX,player[1].playerY,playerX+175*direction,playerY+130)/80)-1)*-40*direction;
+        }
+        break; 
+      default://idle
+        break;
+    }
+    playerMode2='0';
+    fill(160,0,0);
+    rect(playerX,playerY+40, 130, 210);
+    ellipse(playerX,playerY-100,130,130);
+    fill(255,255,255);
+    ellipse(playerX-30,playerY-110,30,30);
+    ellipse(playerX+30,playerY-110,30,30);
+    fill(0,0,0);
+    ellipse(playerX+34*direction,playerY-110,20,20);
+    ellipse(playerX-26*direction,playerY-110,20,20);
+    //line(playerX,payerY-100,playerX-40,playerY-140);
+    //line(playerX,playerY-100,playerX+40,playerY-140);
+    strokeWeight(8);
+    line(playerX+40,playerY-125,playerX-40,playerY-125);
+    strokeWeight(2);
+    line(playerX-30,playerY-70,playerX+30,playerY-70);
+    //ellipse(playerX+175*direction,playerY,40,40);//mid
+    //ellipse(playerX+175*direction,playerY-130,40,40);//high
+    //ellipse(playerX+175*direction,playerY+130,40,40);//low
+    fill(255,0,0);
     }
     
     rectMode(CORNER);
@@ -144,11 +217,12 @@ class player{
   void updateMode(char mode) {
     if (playerNumber==1){
       playerMode1=mode;
+      println("wor1");
       
     }
     if (playerNumber==2){
       playerMode2=mode;
-      
+      println("wor2");
     }
   
   }

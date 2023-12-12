@@ -17,7 +17,7 @@ class crowd{
     ellipse(placeX+20,placeY+30,20,20);
     ellipse(placeX+60,placeY+30,20,20);
     
-    if (millis()%15==0){
+    if (millis()%16==0){
       animation=int(random(1,4));
     }
     //This will be 3 diffrent animations proper but for now this is just making sure it works. 

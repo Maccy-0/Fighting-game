@@ -1,8 +1,5 @@
 //Fighting Game (Title in progress)
 //To do
-//Things in the picture:
-//Add second chariter
-//Other:
 //Add comments
 //Add the text file for questions
 //Zip and hand in
@@ -97,12 +94,8 @@ void keyPressed() {
     player[1].updateMode('d');
   }
   if (key=='w'){
-    //player[1].updateMode('w');
     if (player[1].velocity.y==0.0) {
       player[1].velocity.y -= 1.25;
-    }
-    else{
-      
     }
   }
   if (key=='z'){
@@ -116,22 +109,24 @@ void keyPressed() {
   }
   
   if (key=='j'){
-    player[1].updateMode('a');
+    player[0].updateMode('j');
   }
   if (key=='l'){
-    player[1].updateMode('d');
+    player[0].updateMode('l');
   }
   if (key=='i'){
-    player[1].updateMode('w');
+    if (player[0].velocity.y==0.0) {
+      player[0].velocity.y -= 1.25;
+    }
   }
   if (key=='m'){
-    player[1].updateMode('z');
+    player[0].updateMode('m');
   }
   if (key==','){
-    player[1].updateMode('x');
+    player[0].updateMode(',');
   }
   if (key=='.'){
-    player[1].updateMode('c');
+    player[0].updateMode('.');
   }
   }
 }
@@ -217,13 +212,13 @@ void end(){
   }
   else if (player1Health<=0){
     fill(255,255,255);
-    text("Player 1 wins",350, 700);
+    text("Player 2 wins",350, 700);
     fill(0,0,255);
     text("Click to play again",250, 850);
   }
   else if (player2Health<=0){
     fill(255,255,255);
-    text("Player 2 wins",350, 700);
+    text("Player 1 wins",350, 700);
     fill(0,0,255);
     text("Click to play again",250, 850);
   }
