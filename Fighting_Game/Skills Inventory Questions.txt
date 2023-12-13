@@ -1,0 +1,35 @@
+What’s the difference between a for loop and a while loop?
+
+A for loop is a loop that happens a certain number of times from the start. A while loop is flexible in the number of times it loops each time it fires. Technically you can make a for loop using a while loop. So a for loop is a simpler while loop that only goes through a fixed number of times. 
+
+What’s the difference between parameters and arguments?
+
+A parameter is a placeholder for a variable when they get fed into a function. An argument is the variable themselves that are being given to function to turn into the parameters of it. An argument turns into the parameters in other words. 
+
+What’s the difference between a class and an object?
+
+A class is a setting for objects. You make a class so that objects can go in them. It’s like if the class is a box and the objects are… objects in the box. You can put as many objects as you want in the box but you can’t have a object without first having a class. 
+
+What is a constructor function? What does it do and when?
+
+Constructor functions are the first functions an object goes through in a class. It mostly assigns variables and traits to the objects based on its number or nothing. It is very useful for mass producing similar objects. 
+
+Why should each class have its own tab in Processing?
+
+It is much clear that way as you know exactly what would be global or local for that class. It helps to make it clear what is a function and what is a class. 
+
+What’s the difference between an array and an ArrayList?
+
+An array holds variables like, int, float, char, or string. An ArrayList holds objects. Making it much more complicated and giving mor options to use that you would need with the objects. 
+
+Why would you want to go through a list backwards, decrementing the index?
+
+If you are going through a list and you are removing variables from it. If you were going from bottom to top them, you would reach an error as you would try to read a variable that does not exist. But if you are going from top to bottom then this would not be a problem as the bottom is always equal to 0 so you will not reach an error. 
+
+When should you use PVector instead of float variables?
+
+Using PVector is useful when you are trying to do physics-based interaction as you would need movement from the axis and is easier and more efficient to use a PVector then 3 float variables. It is also more compatible with the other built-in functions that are useful. 
+
+What is a normalized vector, why is it useful?
+
+A normalized vector is when you take a vector and takes its magnitude to 1. It is useful when you only care about the direction of the vector and not how strong or weak it is. Such as when you are trying to measure an angle. You can normalize any non-0 vector. 
